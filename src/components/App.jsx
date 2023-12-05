@@ -20,6 +20,17 @@ class App extends Component {
   };
 
   addContact = (name, number) => {
+    const { contacts } = this.state;
+
+    const isDuplicate = contacts.some(
+      contact => contact.name.toLowerCase() === name.toLowerCase()
+    );
+
+    if (isDuplicate) {
+      alert(`${name} is already in contacts.`);
+      return;
+    }
+
     const newContact = {
       id: Date.now(),
       name,
